@@ -5,7 +5,13 @@ import {
   PokemonName,
   PokemonType,
 } from "../models/Pokemon";
-import { addPokemon, editPokemon, getAllPokemon, getPokemon } from "../helpers";
+import {
+  addPokemon,
+  deletePokemon,
+  editPokemon,
+  getAllPokemon,
+  getPokemon,
+} from "../helpers";
 
 const PokemonNameRef = builder.objectRef<PokemonName>("PokemonName");
 const PokemonBaseRef = builder.objectRef<PokemonBase>("PokemonBase");
@@ -277,6 +283,20 @@ builder.mutationFields((t) => ({
         },
       });
       return newPokemon;
+    },
+  }),
+  deletePokemon: t.field({
+    type: Pokemon,
+    description: "Delete a pokemon",
+    args: {
+      id: t.arg.int({ required: true }),
+    },
+    resolve: async (_, { id }): Promise<Pokemon> => {
+      const pokemon = await deletePokemon(id);
+      if (!pokemon) {
+        throw new Error(`No pokemon found with id ${id}`);
+      }
+      return pokemon;
     },
   }),
 }));

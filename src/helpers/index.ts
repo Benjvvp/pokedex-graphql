@@ -38,4 +38,16 @@ const addPokemon = async (pokemon: Pokemon): Promise<Pokemon> => {
   return newPokemon;
 };
 
-export { getAllPokemon, getPokemon, editPokemon, addPokemon };
+const deletePokemon = async (id: number): Promise<Pokemon> => {
+  const pokemonList = await getAllPokemon();
+  const pokemonIndex = pokemonList.findIndex((pokemon) => pokemon.id === id);
+  const pokemon = pokemonList[pokemonIndex];
+  pokemonList.splice(pokemonIndex, 1);
+  await fs.writeFile(
+    path.join(__dirname, "../data/pokedex.json"),
+    JSON.stringify(pokemonList)
+  );
+  return pokemon;
+};
+
+export { getAllPokemon, getPokemon, editPokemon, addPokemon, deletePokemon };
