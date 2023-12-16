@@ -33,22 +33,23 @@ export interface PokemonBase {
   Speed: number;
 }
 
-export type PokemonType =
-  | "Normal"
-  | "Fighting"
-  | "Flying"
-  | "Poison"
-  | "Ground"
-  | "Rock"
-  | "Bug"
-  | "Ghost"
-  | "Steel"
-  | "Fire"
-  | "Water"
-  | "Grass"
-  | "Electric"
-  | "Psychic"
-  | "Ice"
-  | "Dragon"
-  | "Dark"
-  | "Fairy";
+export enum PokemonType {
+  Normal = "Normal",
+  Fighting = "Fighting",
+  Flying = "Flying",
+  Poison = "Poison",
+  Ground = "Ground",
+  Rock = "Rock",
+  Bug = "Bug",
+  Ghost = "Ghost",
+  Steel = "Steel",
+  Fire = "Fire",
+  Water = "Water",
+  Grass = "Grass",
+  Electric = "Electric",
+  Psychic = "Psychic",
+  Ice = "Ice",
+  Dragon = "Dragon",
+  Dark = "Dark",
+  Fairy = "Fairy",
+}
